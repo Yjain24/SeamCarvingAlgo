@@ -59,11 +59,31 @@ public:
   // fills in image using the input stream, is. the stream contains
   // an image in plain PPM format
   friend std::istream& operator>>(std::istream& is, ImagePPM& image);
-
   /**
    * Add any helper methods you may need
    */
+  // void RemoveVertical(int height, Pixel** v_image,int width);
 
+  void SetPixelss(Pixel** pixels, int height, int width);
+  void SetImage(int height,
+                        int width,
+                        int max_color_value,
+                        Pixel** pixels);
+
+  void SetPixels(Pixel** pixels, int height, int width);
+  void RemoveVerticalCarve(const int* seam);
+  void CopyPixelsUpToSeam( Pixel** source, Pixel** destination, int height, const int* seam);
+  void ShiftPixelsAfterSeam( Pixel** source, Pixel** destination, int height, int width, const int* seam);
+  Pixel** AllocatePixelArray(int height, int width);
+  void DeletePixelArray(Pixel** pixels, int height);
+
+
+// void RemoveVertical(int height, Pixel** image, int width);
+
+  void RemoveHorizontal(int*& to_remove);
+  void CopyPixelsWithRowRemoved(int*& to_remove, int new_height, int width, Pixel** old_pix, Pixel** new_pix) ;
+  Pixel** CreateNewPixelArray(int height, int width);
+  void DeletePixels();
 private:
   int height_ = 0;
   int width_ = 0;
@@ -72,9 +92,10 @@ private:
 
   // given help function, "clears" the data of the instance
   void Clear();
-
+  
   /**
    * Add any helper methods you may need
+   
    */
 };
 
