@@ -1,1 +1,1 @@
-# CS-128 : MP : Seam Carver
+Seam Carving algorithm to reduce image size without losing its quality
